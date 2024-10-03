@@ -1,0 +1,25 @@
+<ul style="display:flex;margin-bottom:30px;">
+                {% if objects.has_previous %}
+                <li style="border:1px solid blue;padding:5px 10px;" class="active"><a href='{% url "termins_page" objects.previous_page_number %}'> < </a></li>
+                {% else %}
+                <li style="border:1px solid blue;padding:5px 10px;"><span> < </span></li>
+                {% endif %}
+                {% for i in objects.paginator.page_range %}
+                     {% if objects.number == i %}
+                     <li style="border:1px solid blue;padding:5px 10px;" class="active"><a href="{% url 'termins_page' 1 %}"><span>{{ i }}</span></a></li>
+                {% else %}
+                <li style="border:1px solid blue;padding:5px 10px;"><a href="{% url 'termins_page' i %}">{{ i }}</a></li>
+                 {% endif %}
+                {% endfor %}
+
+                 {% if objects.has_next %}
+                <li style="border:1px solid blue;padding:5px 10px;" class="active"><a href="{% url 'termins_page' objects.next_page_number %}"> > </a></li>
+                 {% else %}
+                <li style="border:1px solid blue;padding:5px 10px;"><a href="#"> > </a></li>
+                {% endif %}
+</ul>
+<style>
+    .active{
+        background-color:blue;
+    }
+</style>
